@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+
+  <title>Lista de Alunos</title>
+</head>
+<body>
+  <h1>Lista de Alunos</h1>
+
+  <ul>
+    <% alunos.forEach(function(aluno) { %>
+      <li>ID: <%= aluno.id %>, Nome: <%= aluno.nome %>, Idade: <%= aluno.idade %></li>
+    <% }); %>
+  </ul>
+  
+  <a href="/alunos/adicionar">Adicionar Aluno</a>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Informações do Aluno</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+
+</head>
+<body>
+    <h1>Informações do Aluno</h1>
+    <p>Nome: <%= aluno.nome %></p>
+    <p>Idade: <%= aluno.idade %></p>
+
+    
+    <form id="deleteForm" method="POST" action="/alunos/<%= aluno.id %>">
+        <input type="hidden" name="_method" value="DELETE"> 
+        <button id="deletB"type="submit">Excluir Aluno</button>
+    </form>
+
+    <a href="/alunos">Voltar para a lista de alunos</a>
+
+    <script>
+        
+        document.getElementById('deleteForm').addEventListener('submit', function (event) {
+            event.preventDefault(); 
+
+            if (confirm('Tem certeza de que deseja excluir este aluno?')) {
+                
+                fetch(this.getAttribute('action'), {
+                    method: 'DELETE',
+                }).then(function (response) {
+                    
+                    if (response.status === 204) {
+                        console.log('Aluno excluído com sucesso');
+                    } else {
+                        console.error('Erro ao excluir o aluno');
+                    }
+                }).catch(function (error) {
+                    console.error('Erro ao processar a solicitação:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
